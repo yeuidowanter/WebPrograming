@@ -1,30 +1,221 @@
-body{
-	width: 600px;
-	margin: 0 auto;
-	border: 5px solid #02499B;
-	margin-top: 5%;
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.users{
-	float : right;
-	margin-right: 30%;
+
+.page-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.messages {
-	width: 500px;
-	height: 400px;
-	margin: auto;
-	border : 1px solid black;
-	padding: 1em;
+
+.page-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 400px; /* 이미지 크기 조정 */
+    height: auto;
 }
-.message_form,
-.change_name_form{
-	padding: 1em;
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.center{
-	width: 600px;
-	height: 700px;
+
+.box-container {
+    padding: 20px;
+    border: 2px solid #02499B;
+    border-radius: 10px;
+    width: 400px; /* 박스 크기 조정 */
+    text-align: center;
 }
-.textinput{
-	margin-left: 3%;
-	width: 520px;
-	height: 40px;
+
+.register_form, .login_form {
+    margin-top: 20px;
+}
+
+.register_form input, .login_form input {
+    display: block;
+    width: 90%;
+    padding: 10px; /* 입력 필드 패딩 조정 */
+    margin-bottom: 10px;
+}
+
+.button {
+    display: inline-block;
+    width: calc(50% - 5px); /* 버튼 너비 조정 */
+    padding: 10px;
+    background-color: #FFCC00; /* 버튼 색상 변경 */
+    color: black; /* 텍스트 색상 변경 */
+    border: none;
+    border-radius: 25px; /* 버튼을 타원형으로 변경 */
+    cursor: pointer;
+    margin-right: 10px; /* 버튼 간격 조정 */
+}
+
+.button:last-child {
+    margin-right: 0; /* 마지막 버튼의 오른쪽 마진 제거 */
+}
+
+.button:hover {
+    background-color: #E6B800; /* 버튼 호버 색상 변경 */
+}
+
+/* 채팅방 관련 스타일 */
+.chat-app {
+    display: flex; /* Flex 컨테이너로 설정 */
+    height: 100vh;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* 높이를 100vh로 설정하여 전체 높이 채우기 */
+    box-sizing: border-box; /* 패딩 포함 */
+}
+
+.sidebar-logo {
+    width: 150px; /* 사이드바 로고 크기 조정 */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.search-icon {
+    width: 30px; /* 검색 버튼 아이콘 크기 조정 */
+    height: 30px;
+}
+
+.user-list {
+    margin-top: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow-y: auto; /* 메시지 영역에 스크롤 추가 */
+    height: 100vh; /* 높이를 100vh로 설정하여 전체 높이 채우기 */
+    box-sizing: border-box; /* 패딩 포함 */
+}
+
+.messages-header {
+    background-color: #f0f0f0; /* 헤더 배경색 */
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.message-list {
+    flex-grow: 1;
+    overflow-y: auto; /* 메시지 영역에 스크롤 추가 */
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 100px;
+    max-width: 40%;
+    word-wrap: break-word;
+}
+
+.message.current-user {
+    align-self: flex-end;
+    background-color: #DCF8C6; /* 현재 사용자 메시지의 배경색 */
+}
+
+.message:not(.current-user) {
+    align-self: flex-start;
+    background-color: #f1f0f0; /* 다른 사용자 메시지의 배경색 */
+}
+
+.message-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.message.left {
+    background-color: #f0f0f0;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.message.right {
+    background-color: #d4f8d4;
+    text-align: right;
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+.timestamp {
+    align-self: flex-end;
+    font-size: 0.8em;
+    color: gray;
+}
+
+.message-form-container {
+    padding-top: 10px;
+    width: 100%; /* 메시지 폼 컨테이너의 폭을 메시지 컨테이너와 동일하게 설정 */
+}
+
+.message_form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.textinput {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.input-group {
+    display: flex;
+    width: 680%;
+}
+
+.input-group .textinput {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.input-group button {
+    flex-shrink: 0;
 }

@@ -1,6 +1,9 @@
+'use strict';
+
 // Keep track of which names are used so that there are no duplicates
 var userNames = (function () {
   var names = {};
+ 
 
   var claim = function (name) {
     if (!name || names[name]) {
@@ -27,10 +30,11 @@ var userNames = (function () {
   // serialize claimed names as an array
   var get = function () {
     var res = [];
-    for (user in names) {
-      res.push(user);
+    for (var user in names) {
+      
+        res.push(user);
+      
     }
-
     return res;
   };
 
@@ -40,11 +44,21 @@ var userNames = (function () {
     }
   };
 
+  // 사용자 정보를 저장하는 객체 및 회원가입 함수 추가
+  var registerUser = function(name, password) {
+    if (users[name]) {
+      return false;
+    }
+    users[name] = { name, password };
+    return true;
+  };
+
   return {
     claim: claim,
     free: free,
     get: get,
-    getGuestName: getGuestName
+    getGuestName: getGuestName,
+    registerUser: registerUser
   };
 }());
 
@@ -97,4 +111,15 @@ module.exports = function (socket) {
     });
     userNames.free(name);
   });
+
+  // 회원 가입 이벤트 핸들러 추가
+  socket.on('disconnect', function () {
+    socket.broadcast.emit('user:left', {
+      name: name
+    });
+    userNames.free(name);
+  });
 };
+
+// registerUser 함수 모듈 내보내기 추가
+module.exports.registerUser = userNames.registerUser;
